@@ -18,10 +18,10 @@ function GuessInput({ handleGuess }) {
                  setInput('');
                }}
     >
-    <label htmlFor="guess-input">Enter Guess - 5 Alphanumeric Chars</label>
+    <label htmlFor="guess-input">Enter Guess - 5 Letters</label>
     <input type="text"
            id="guess-input"
-           pattern="\w{5}"
+           pattern="[A-Z]{5}"
            value={input}
            onChange={(e) => setInput((e.target.value).toUpperCase())}></input>
     </form>;
