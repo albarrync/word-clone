@@ -24,7 +24,6 @@ function GuessInput({ handleGuess }) {
            pattern="\w{5}"
            value={input}
            onChange={(e) => setInput((e.target.value).toUpperCase())}></input>
-    <p>{input}</p>
     </form>;
 }
 
