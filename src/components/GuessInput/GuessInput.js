@@ -1,7 +1,7 @@
 import React from "react";
 
 function GuessInput({ handleGuess }) {
-  const [input, setInput] = React.useState('');
+  const [input, setInput] = React.useState("");
 
   function submitGuess() {
     if (input.length === 5) {
@@ -11,20 +11,25 @@ function GuessInput({ handleGuess }) {
     }
   }
 
-  return <form className="guess-input-wrapper"
-               onSubmit={(event) => {
-                 event.preventDefault();
-                 submitGuess();
-                 setInput('');
-               }}
+  return (
+    <form
+      className="guess-input-wrapper"
+      onSubmit={(event) => {
+        event.preventDefault();
+        submitGuess();
+        setInput("");
+      }}
     >
-    <label htmlFor="guess-input">Enter Guess - 5 Letters</label>
-    <input type="text"
-           id="guess-input"
-           pattern="[A-Z]{5}"
-           value={input}
-           onChange={(e) => setInput((e.target.value).toUpperCase())}></input>
-    </form>;
+      <label htmlFor="guess-input">Enter Guess - 5 Letters</label>
+      <input
+        type="text"
+        id="guess-input"
+        pattern="[A-Z]{5}"
+        value={input}
+        onChange={(e) => setInput(e.target.value.toUpperCase())}
+      ></input>
+    </form>
+  );
 }
 
 export default GuessInput;

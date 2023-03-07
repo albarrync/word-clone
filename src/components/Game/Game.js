@@ -1,10 +1,10 @@
-import React from 'react';
-import Guess from '../Guess';
-import GuessInput from '../GuessInput';
+import React from "react";
+import Guess from "../Guess";
+import GuessInput from "../GuessInput";
 
-import { sample, range } from '../../utils';
-import { WORDS } from '../../data';
-import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
+import { sample, range } from "../../utils";
+import { WORDS } from "../../data";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -12,9 +12,8 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = React.useState('');
+  const [guess, setGuess] = React.useState("");
   const [guessList, setGuessList] = React.useState([]);
-
 
   function handleGuess(guess) {
     const nextGuessList = [...guessList];
@@ -22,18 +21,21 @@ function Game() {
     setGuessList(nextGuessList);
   }
 
-  return <>
+  return (
+    <>
+      <div className="guess-results">
+        {range(0, NUM_OF_GUESSES_ALLOWED).map((guessRow, index) => {
+          return <Guess key={index} guessString={guessList[index]} />;
+        })}
+      </div>
 
-    <div className="guess-results">
-      {range(0, NUM_OF_GUESSES_ALLOWED).map((guessRow, index) => {
-        return (<Guess key={index} guessString={ guessList[index] } /> )
-      })}
-    </div>
-
-    <GuessInput handleGuess={handleGuess}
-                guessList={guessList}
-                setGuessList={setGuessList}/>
-    </>;
+      <GuessInput
+        handleGuess={handleGuess}
+        guessList={guessList}
+        setGuessList={setGuessList}
+      />
+    </>
+  );
 }
 
 export default Game;
