@@ -12,7 +12,6 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = React.useState("");
   const [guessList, setGuessList] = React.useState([]);
 
   function handleGuess(guess) {
@@ -21,8 +20,27 @@ function Game() {
     setGuessList(nextGuessList);
   }
 
+  function resolveGameState() {
+    if (guessList.at(-1) === answer) {
+      return (
+        <div className="happy banner">
+          <p> You won in {guessList.length} guess(es).</p>
+        </div>
+      );
+    } else if (guessList.length >= NUM_OF_GUESSES_ALLOWED) {
+      return (
+        <div className="sad banner">
+          <p> Sorry! The answer was {answer}. </p>
+        </div>
+      );
+    } else {
+      return;
+    }
+  }
+
   return (
     <>
+      {resolveGameState()}
       <div className="guess-results">
         {range(0, NUM_OF_GUESSES_ALLOWED).map((guessRow, index) => {
           return (
@@ -33,8 +51,8 @@ function Game() {
 
       <GuessInput
         handleGuess={handleGuess}
+        answer={answer}
         guessList={guessList}
-        setGuessList={setGuessList}
       />
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessInput({ handleGuess }) {
+function GuessInput({ handleGuess, answer, guessList }) {
   const [input, setInput] = React.useState("");
 
   function submitGuess() {
@@ -27,6 +28,10 @@ function GuessInput({ handleGuess }) {
         pattern="[A-Z]{5}"
         value={input}
         onChange={(e) => setInput(e.target.value.toUpperCase())}
+        disabled={
+          guessList.at(-1) === answer ||
+          guessList.length >= NUM_OF_GUESSES_ALLOWED
+        }
       ></input>
     </form>
   );
