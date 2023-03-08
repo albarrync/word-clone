@@ -1,12 +1,13 @@
 import React from "react";
 import { range } from "../../utils";
+import { checkGuess } from "../../game-helpers";
 
-function Guess({ guessString }) {
+function Guess({ guessString, answer }) {
   function rowBuilder(input) {
     if (!!input) {
-      return input.split("").map((character, index) => (
-        <span className="cell" key={index}>
-          {character}
+      return checkGuess(input, answer).map((letter, index) => (
+        <span className={`cell ${letter.status}`} key={index}>
+          {letter.letter}
         </span>
       ));
     } else {

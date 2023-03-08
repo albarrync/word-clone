@@ -25,7 +25,9 @@ function Game() {
     <>
       <div className="guess-results">
         {range(0, NUM_OF_GUESSES_ALLOWED).map((guessRow, index) => {
-          return <Guess key={index} guessString={guessList[index]} />;
+          return (
+            <Guess key={index} guessString={guessList[index]} answer={answer} />
+          );
         })}
       </div>
 
